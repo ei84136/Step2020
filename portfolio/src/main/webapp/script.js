@@ -16,14 +16,14 @@
  * Adds a random greeting to the page.
  */
 function addRandomGreeting() {
-  const greetings =
-      ['Run!',
-        'Don\'t blink.',
-        'I\'m planning on dyeing my hair pink.',
-        'I have a cat named Gracie.',
-        'It\'s dangerous to go alone! Take this.',
-        'You want weapons? We\'re in a library! Books! The best weapons in the world!',
-        ];
+  const greetings = [
+    'Run!',
+    'Don\'t blink.',
+    'I\'m planning on dyeing my hair pink.',
+    'I have a cat named Gracie.',
+    'It\'s dangerous to go alone! Take this.',
+    'You want weapons? We\'re in a library! Books! The best weapons in the world!',
+  ];
 
   // Pick a random greeting.
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
