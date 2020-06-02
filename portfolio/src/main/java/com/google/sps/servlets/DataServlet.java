@@ -14,6 +14,7 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +24,34 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private ArrayList<String> messages = new ArrayList<>();
+  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello Erica!</h1>");
+    // response.setContentType("text/html;");
+    // response.getWriter().println("Hello Erica!");
+
+    messages.add("Hello!");
+    messages.add("Hola!");
+    messages.add("Hallo!");
+
+    String json = convertToJson(messages);
+
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
+  }
+
+  private String convertToJson(ArrayList messages) {
+      String json = "[";
+
+    //   for (String message: messages) {
+    //       json += "{\"comment\": " + message + "}";
+    //   }
+
+      json += "{\"message\": \"" + messages.get(0) +"\"}, ";
+      json += "{\"message\": \"" + messages.get(1) +"\"}, ";
+      json += "{\"message\": \"" + messages.get(2) +"\"}";
+      json +=  "]";
+      return json;
   }
 }
