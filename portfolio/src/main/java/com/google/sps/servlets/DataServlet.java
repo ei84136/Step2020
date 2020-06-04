@@ -1,3 +1,4 @@
+// Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,14 +24,10 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
   private ArrayList<String> messages = new ArrayList<>();
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // response.setContentType("text/html;");
-    // response.getWriter().println("Hello Erica!");
-
     messages.add("Hello!");
     messages.add("Hola!");
     messages.add("Hallo!");
@@ -42,16 +39,11 @@ public class DataServlet extends HttpServlet {
   }
 
   private String convertToJson(ArrayList messages) {
-      String json = "[";
-
-    //   for (String message: messages) {
-    //       json += "{\"comment\": " + message + "}";
-    //   }
-
-      json += "{\"message\": \"" + messages.get(0) +"\"}, ";
-      json += "{\"message\": \"" + messages.get(1) +"\"}, ";
-      json += "{\"message\": \"" + messages.get(2) +"\"}";
-      json +=  "]";
-      return json;
+    String json = "[";
+    json += "{\"message\": \"" + messages.get(0) +"\"}, ";
+    json += "{\"message\": \"" + messages.get(1) +"\"}, ";
+    json += "{\"message\": \"" + messages.get(2) +"\"}";
+    json +=  "]";
+    return json;
   }
 }
