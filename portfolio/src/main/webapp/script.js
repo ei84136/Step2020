@@ -32,3 +32,21 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+function fetchTest() {
+  fetch('/data').then(response => response.json()).then((messages) => {
+    console.log(messages);
+    const commentListElement = document.getElementById('helloContainer');
+    commentListElement.innerHTML = '';
+    messages.forEach(element => {
+      commentListElement.appendChild(
+        createListElement('Comment: ' + element.message));
+    });
+  });
+}
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
