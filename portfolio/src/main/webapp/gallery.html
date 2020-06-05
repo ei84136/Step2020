@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>My Gallery</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gallery_style.css">
+    <script src="gallery_script.js"></script>
   </head>
   <body>
     <div id="content">
@@ -65,5 +66,15 @@
           </div>
       </div>
     </div> 
+    </div>
+		<div id ="commentsSection">
+      <form action="/data" method="POST">
+          <p>Enter your comments here:</p>
+          <textarea name="comment-area"></textarea>
+          <input type="submit">
+      </form>
+			<button onClick="fetchComments()">Click to see all comments</button>
+      <div id="displayComments"></div>
+    </div>
   </body>
 </html>
