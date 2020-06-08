@@ -37,36 +37,36 @@ public class DataServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Comments").addSort("timestamp", SortDirection.ASCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		PreparedQuery results = datastore.prepare(query);
+    PreparedQuery results = datastore.prepare(query);
 
-		ArrayList<String> commentsArrayList = new ArrayList<>();
+    ArrayList<String> commentsArrayList = new ArrayList<>();
 
-		for (Entity entity: results.asIterable()) {
-			String comment = (String) entity.getProperty("comment");
-			commentsArrayList.add(comment);
-		}	
+    for (Entity entity : results.asIterable()) {
+      String comment = (String) entity.getProperty("comment");
+      commentsArrayList.add(comment);
+    }	
 
     String json = convertToJsonUsingGson(commentsArrayList);
-		response.setContentType("application/json;");
-  	response.getWriter().println(json);
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
   }
 
   @Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String userComment = request.getParameter("comment-area");
-		long timestamp = System.currentTimeMillis();
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String userComment = request.getParameter("comment-area");
+    long timestamp = System.currentTimeMillis();
 
-		Entity taskEntity = new Entity("Comments");
-		taskEntity.setProperty("comment", userComment);
+    Entity taskEntity = new Entity("Comments");
+    taskEntity.setProperty("comment", userComment);
     taskEntity.setProperty("timestamp", timestamp);
 
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		datastore.put(taskEntity);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
 
-		response.sendRedirect("/gallery.html");
-	}
+    response.sendRedirect("/gallery.html");
+  }
 
-	private String convertToJsonUsingGson(ArrayList arrayList) {
+  private String convertToJsonUsingGson(ArrayList arrayList) {
     Gson gson = new Gson();
     String json = gson.toJson(arrayList);
     return json;
