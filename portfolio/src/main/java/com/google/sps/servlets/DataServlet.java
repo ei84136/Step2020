@@ -44,7 +44,7 @@ public class DataServlet extends HttpServlet {
     for (Entity entity : results.asIterable()) {
       String comment = (String) entity.getProperty("comment");
       commentsArrayList.add(comment);
-    }	
+    }
 
     String json = convertToJsonUsingGson(commentsArrayList);
     response.setContentType("application/json;");
