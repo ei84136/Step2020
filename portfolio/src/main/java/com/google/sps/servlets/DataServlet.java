@@ -66,9 +66,9 @@ public class DataServlet extends HttpServlet {
     response.sendRedirect("/gallery.html");
   }
 
-  private String convertToJsonUsingGson(ArrayList arrayList) {
+  private String convertToJsonUsingGson(List list) {
     Gson gson = new Gson();
-    String json = gson.toJson(arrayList);
+    String json = gson.toJson(list);
     return json;
   }
 }
