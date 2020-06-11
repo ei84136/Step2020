@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>My Gallery</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gallery_style.css">
+    <script src="gallery_script.js"></script>
   </head>
   <body>
     <div id="content">
@@ -13,8 +14,8 @@
       <div id="topThird">
         <h3>Important Moments</h3>
         <div id="momentsDescrip">
-        	<p>These photos were originally taken in the moment without any thought, but looking back on them
-		  		 they are what will keep me from forgetting experiences that changed my life.</p>
+          <p>These photos were originally taken in the moment without any thought, but looking back on them
+           they are what will keep me from forgetting experiences that changed my life.</p>
         </div>
         <div id="momentsPhotos">
           <img src="../images/cake.PNG" alt="CSSI Cake" width="500">
@@ -39,31 +40,40 @@
         </div>
       </div>
       <div id="bottomThird">
-          <h3>Drawing Inspiration</h3>
-          <div id="inspoDescrip">
-            <p>These are photos that may not look like much, but when I took then I was trying to capture an element
-               of the environment that I wanted to incorporate into a drawing. Recently I have had more time to practice drawing
-               and so these photos serve have been serving as inspiration for what I draw.</p>
-          </div>
-          <div id="inspoPhotos">
-            <img src="../images/alcoveBench.jpg" alt="A Bench Hidden By Plants" width="500">
-            <img src="../images/cactusClose.PNG" alt="A Cactus" width="500">
-            <img src="../images/cactusTower.jpg" alt="A Cactus in a Tower" width="500">
-            <img src="../images/closerRPool.jpg" alt="A Closeup on a Fountain" width="500">
-            <img src="../images/curvePath.jpg" alt="A Pathway" width="500">
-            <img src="../images/dragonUp.PNG" alt="A Dragon" width="500">
-            <img src="../images/farDragon.JPG" alt="A Dragon from afar" width="500">
-            <img src="../images/fountainGlare.jpg" alt="A Fountain" width="500">
-            <img src="../images/grassClose.PNG" alt="Blades of Grass" width="500">
-            <img src="../images/ivyWall.jpg" alt="A Wall Covered in Plants" width="500">
-            <img src="../images/pavillion.PNG" alt="A Small Pavillion" width="500">
-            <img src="../images/plantsCurve.jpg" alt="A Curved Wall of Plants" width="500">
-            <img src="../images/rabbit.JPG" alt="A Rabbit" width="500">
-            <img src="../images/rabbitPool.jpg" alt="A Rabbit" width="500">
-            <img src="../images/stoneCactus.jpg" alt="A Cactus in a Stone Tower" width="500">
-            <img src="../images/walkway.jpg" alt="A Walkway" width="500">
-          </div>
+        <h3>Drawing Inspiration</h3>
+        <div id="inspoDescrip">
+          <p>These are photos that may not look like much, but when I took then I was trying to capture an element
+             of the environment that I wanted to incorporate into a drawing. Recently I have had more time to practice drawing
+             and so these photos serve have been serving as inspiration for what I draw.</p>
+        </div>
+        <div id="inspoPhotos">
+          <img src="../images/alcoveBench.jpg" alt="A Bench Hidden By Plants" width="500">
+          <img src="../images/cactusClose.PNG" alt="A Cactus" width="500">
+          <img src="../images/cactusTower.jpg" alt="A Cactus in a Tower" width="500">
+          <img src="../images/closerRPool.jpg" alt="A Closeup on a Fountain" width="500">
+          <img src="../images/curvePath.jpg" alt="A Pathway" width="500">
+          <img src="../images/dragonUp.PNG" alt="A Dragon" width="500">
+          <img src="../images/farDragon.JPG" alt="A Dragon from afar" width="500">
+          <img src="../images/fountainGlare.jpg" alt="A Fountain" width="500">
+          <img src="../images/grassClose.PNG" alt="Blades of Grass" width="500">
+          <img src="../images/ivyWall.jpg" alt="A Wall Covered in Plants" width="500">
+          <img src="../images/pavillion.PNG" alt="A Small Pavillion" width="500">
+          <img src="../images/plantsCurve.jpg" alt="A Curved Wall of Plants" width="500">
+          <img src="../images/rabbit.JPG" alt="A Rabbit" width="500">
+          <img src="../images/rabbitPool.jpg" alt="A Rabbit" width="500">
+          <img src="../images/stoneCactus.jpg" alt="A Cactus in a Stone Tower" width="500">
+          <img src="../images/walkway.jpg" alt="A Walkway" width="500">
+        </div>
       </div>
     </div> 
+    <div id ="commentsSection">
+      <form action="/data" method="POST">
+        <p>Enter your comments here:</p>
+        <textarea name="comment-area"></textarea>
+        <input type="submit">
+      </form>
+      <button onClick="fetchComments()">Click to see all comments</button>
+      <div id="displayComments"></div>
+    </div>
   </body>
 </html>
