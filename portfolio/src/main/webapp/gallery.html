@@ -65,14 +65,15 @@
           <img src="../images/walkway.jpg" alt="A Walkway" width="500">
         </div>
       </div>
-    </div> 
+    </div>
     <div id ="commentsSection">
       <form action="/data" method="POST">
         <p>Enter your comments here:</p>
         <textarea name="comment-area"></textarea>
         <input type="submit">
       </form>
-      <button onClick="fetchComments()">Click to see all comments</button>
+      <button onClick="fetchComments()">Show comments</button>
+      <button onClick="deleteComments()">Delete all comments</button>
       <div id="displayComments"></div>
     </div>
   </body>

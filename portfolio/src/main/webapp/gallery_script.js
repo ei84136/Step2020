@@ -14,3 +14,7 @@ function createListElement(text) {
   liElement.innerText = text;
   return liElement;
 }
+
+function deleteComments() {
+  fetch('/delete-data', {method: 'POST'}).then(fetchComments());
+}
