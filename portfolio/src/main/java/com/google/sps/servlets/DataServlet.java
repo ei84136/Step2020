@@ -37,22 +37,19 @@ import javax.servlet.http.HttpServletResponse;
 public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // response.setCharacterEncoding("UTF-8");
     Query query = new Query("Comments").addSort("timestamp", SortDirection.ASCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
     ArrayList<String> commentsArrayList = new ArrayList<>();
     String languageCode = request.getParameter("languageCode");
-    System.out.println(languageCode);  
 
     for (Entity entity : results.asIterable()) {
       String comment = (String) entity.getProperty("comment");
-      // String languageCode = request.getParameter("languageCode");
       if (!(languageCode == null)) {
         Translate translate = TranslateOptions.getDefaultInstance().getService();
         Translation translation =
-         translate.translate(comment, Translate.TranslateOption.targetLanguage(languageCode));
+            translate.translate(comment, Translate.TranslateOption.targetLanguage(languageCode));
         commentsArrayList.add(translation.getTranslatedText());
       }
       commentsArrayList.add(comment);

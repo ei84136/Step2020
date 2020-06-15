@@ -11,10 +11,6 @@ function fetchComments() {
 
 function fetchCommentsTranslate() {
   const languageCode = document.getElementById('languages').value;
-  console.log(languageCode);
-  // const params = new URLSearchParams();
-  // params.append('languageCode', languageCode);
-//params.toString()
   fetch('/data?languageCode=' + languageCode).then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('displayComments');
     commentListElement.innerHTML = '';
