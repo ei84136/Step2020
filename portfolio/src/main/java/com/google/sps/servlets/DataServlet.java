@@ -20,6 +20,9 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,27 +35,37 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // response.setCharacterEncoding("UTF-8");
     Query query = new Query("Comments").addSort("timestamp", SortDirection.ASCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
     ArrayList<String> commentsArrayList = new ArrayList<>();
+    String languageCode = request.getParameter("languageCode");
+    System.out.println(languageCode);  
 
     for (Entity entity : results.asIterable()) {
       String comment = (String) entity.getProperty("comment");
+      // String languageCode = request.getParameter("languageCode");
+      if (!(languageCode == null)) {
+        Translate translate = TranslateOptions.getDefaultInstance().getService();
+        Translation translation =
+         translate.translate(comment, Translate.TranslateOption.targetLanguage(languageCode));
+        commentsArrayList.add(translation.getTranslatedText());
+      }
       commentsArrayList.add(comment);
     }
 
     String json = convertToJsonUsingGson(commentsArrayList);
     response.setContentType("application/json;");
+    response.setCharacterEncoding("UTF-8");
     response.getWriter().println(json);
   }
 
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {    
     String userComment = request.getParameter("comment-area");
     long timestamp = System.currentTimeMillis();
 
