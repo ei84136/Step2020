@@ -9,7 +9,7 @@ function fetchComments() {
   });
 }
 
-function fetchCommentsTranslate() {
+function translateComments() {
   const languageCode = document.getElementById('languages').value;
   fetch('/data?languageCode=' + languageCode).then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('displayComments');

@@ -72,11 +72,11 @@
         <textarea name="comment-area"></textarea>
         <input type="submit">
         <label for="languages">Choose a language:</label>
-        <select name="languages" id="languages" onchange="fetchCommentsTranslate()">
-          <option value="en">English</option>
+        <select name="languages" id="languages"()">
           <option value="bs">Bosnian</option> 
           <option value="zh">Chinese</option>
           <option value="da">Danish</option>
+          <option value="en">English</option>
           <option value="de">German</option>
           <option value="ga">Irish</option>
           <option value="it">Italian</option>
@@ -87,8 +87,9 @@
           <option value="es">Spanish</option>
         </select>
       </form>
-      <button onClick="fetchComments()">Show comments</button>
-      <button onClick="deleteComments()">Delete all comments</button>
+      <button onClick="fetchComments()">Show Original Comments</button>
+      <button onClick="deleteComments()">Delete All Comments</button>
+      <button onClick="translateComments()">Show Translated Comments</button>
       <div id="displayComments"></div>
     </div>
   </body>

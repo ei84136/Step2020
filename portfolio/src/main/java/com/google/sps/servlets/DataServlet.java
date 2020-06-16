@@ -46,13 +46,14 @@ public class DataServlet extends HttpServlet {
 
     for (Entity entity : results.asIterable()) {
       String comment = (String) entity.getProperty("comment");
-      if (!(languageCode == null)) {
+      if (languageCode != null) {
         Translate translate = TranslateOptions.getDefaultInstance().getService();
         Translation translation =
             translate.translate(comment, Translate.TranslateOption.targetLanguage(languageCode));
         commentsArrayList.add(translation.getTranslatedText());
+      } else {
+        commentsArrayList.add(comment);
       }
-      commentsArrayList.add(comment);
     }
 
     String json = convertToJsonUsingGson(commentsArrayList);
