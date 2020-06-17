@@ -32,4 +32,93 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+google.charts.load('current', {'packages': ['sankey']});
+google.charts.setOnLoadCallback(drawChart);
 
+// google.charts.load('current', {'packages':['sankey']});
+// google.charts.setOnLoadCallback(drawChart);
+
+// function drawChart() {
+//   var data = new google.visualization.DataTable();
+//   data.addColumn('string', 'From');
+//   data.addColumn('string', 'To');
+//   data.addColumn('number', 'Weight');
+//   data.addRows([
+//     [ 'A', 'X', 5 ],
+//     [ 'A', 'Y', 7 ],
+//     [ 'A', 'Z', 6 ],
+//     [ 'B', 'X', 2 ],
+//     [ 'B', 'Y', 9 ],
+//     [ 'B', 'Z', 4 ]
+//   ]);
+
+//   // Sets chart options.
+//   var options = {
+//     width: 600,
+//   };
+
+//   // Instantiates and draws our chart, passing in some options.
+//   var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+//   chart.draw(data, options);
+// }
+
+
+
+function drawChart() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'From');
+  data.addColumn('string', 'To');
+  data.addColumn('number', 'Weight');
+  data.addRows([
+    ['Focused', 'Pop', 3],
+    ['Focused', 'Show Tunes', 1],
+    ['Focused', 'Classical', 0],
+    ['Focused', '"Pop Punk"', 5],
+    ['Focused', 'Emo', 0],
+    ['Focused', 'other', 1],
+    ['Energized', 'Pop', 5],
+    ['Energized', 'Show Tunes', 5],
+    ['Energized', 'Classical', 0],
+    ['Energized', '"Pop Punk"', 5],
+    ['Energized', 'Emo', 1],
+    ['Energized', 'other', 1],
+    ['Tired', 'Pop', 1],
+    ['Tired', 'Show Tunes', 1],
+    ['Tired', 'Classical', 5],
+    ['Tired', '"Pop Punk"', 0],
+    ['Tired', 'Emo', 2],
+    ['Tired', 'other', 3],
+    ['Happy', 'Pop', 5],
+    ['Happy', 'Show Tunes', 5],
+    ['Happy', 'Classical', 5],
+    ['Happy', '"Pop Punk"', 5],
+    ['Happy', 'Emo', 5],
+    ['Happy', 'other', 5],
+    ['Upset', 'Pop', 2],
+    ['Upset', 'Show Tunes', 2],
+    ['Upset', 'Classical', 1],
+    ['Upset', '"Pop Punk"', 2],
+    ['Upset', 'Emo', 2],
+    ['Upset', 'other', 1],
+    ['Indecisive', 'Pop', 3],
+    ['Indecisive', 'Show Tunes', 0],
+    ['Indecisive', 'Classical', 2],
+    ['Indecisive', '"Pop Punk"', 4],
+    ['Indecisive', 'Emo', 2],
+    ['Indecisive', 'other', 2],
+    ['Contemplative', 'Pop', 2],
+    ['Contemplative', 'Show Tunes', 1],
+    ['Contemplative', 'Classical', 4],
+    ['Contemplative', '"Pop Punk"', 3],
+    ['Contemplative', 'Emo', 2],
+    ['Contemplative', 'other', 1],
+  ]);
+
+  var options = {
+    width: 500,
+    height: 800,
+  };
+
+  var chart = new google.visualization.Sankey(document.getElementById('moods-music-sankey'));
+  chart.draw(data, options);
+}
