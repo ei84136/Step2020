@@ -35,7 +35,6 @@ function addRandomGreeting() {
 
 google.charts.load('current', {'packages': ['sankey']});
 google.charts.setOnLoadCallback(drawChart);
-
 function drawChart() {
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'From');
